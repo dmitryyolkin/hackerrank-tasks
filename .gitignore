@@ -1,0 +1,41 @@
+HELP.md
+.gradle
+build/
+out/
+
+!gradle/wrapper/gradle-wrapper.jar
+
+### STS ###
+.apt_generated
+.classpath
+.factorypath
+.project
+.settings
+.springBeans
+.sts4-cache
+
+### IntelliJ IDEA ###
+.idea
+*.iws
+*.iml
+*.ipr
+/out/
+
+### NetBeans ###
+/nbproject/private/
+/nbbuild/
+/dist/
+/nbdist/
+/.nb-gradle/
+
+### VS Code ###
+.vscode/
+infrastructure/
+create-jmeter-instance.yaml
+
+
+### http-client.private
+http-client.private.env.json
+
+# local config
+config/application-local.yml
