@@ -12,46 +12,99 @@ public class SolutionCountTriplets {
     // 1 3 9 9 27 81
     // result - 6
     public long calculate(List<Long> arr, long r) {
-        Set<List<Long>> triplets = new HashSet<>();
-        Map<Long, Set<Integer>> value2Indexes = new HashMap<>();
+        Set<Triplet> triplets = new HashSet<>();
+        Map<Long, List<Integer>> value2Indexes = new HashMap<>();
 
         for (int i = arr.size() - 1; i >= 0; i--) {
             Long third = arr.get(i);
-            long second = third / r;
-            long first = second / r;
-            if (first >= 1 && (third % r == 0)) {
-                // potential combination
-                List<Long> candidates = new ArrayList<>();
-                candidates.add(first);
-                candidates.add(second);
-                candidates.add(third);
-                triplets.add(candidates);
+            if (third % r == 0) {
+                long second = third / r;
+                long first = second / r;
+                if (first >= 1) {
+                    // potential combination
+                    triplets.add(new Triplet(first, second, third));
+                }
             }
 
-            Set<Integer> indexes = value2Indexes.computeIfAbsent(third, v -> new HashSet<>());
+            List<Integer> indexes = value2Indexes.computeIfAbsent(third, v -> new ArrayList<>());
             indexes.add(i);
         }
 
         long sum = 0;
-        for (List<Long> triplet : triplets) {
-            long cnt = 1;
-            for (Long value : triplet) {
-                Set<Integer> indexes = value2Indexes.get(value);
-                if (indexes == null || indexes.isEmpty()) {
-                    // no such triplet in our array
-                    cnt = 0;
-                    break;
-                }
+        for (Triplet triplet : triplets) {
 
-                cnt *= indexes.size();
+            List<Integer> firstIndexes = value2Indexes.get(triplet.getFirst());
+            List<Integer> secondIndexes = value2Indexes.get(triplet.getSecond());
+            List<Integer> thirdIndexes = value2Indexes.get(triplet.getThird());
+            if (firstIndexes == null || firstIndexes.isEmpty() ||
+                    secondIndexes == null || secondIndexes.isEmpty() ||
+                    thirdIndexes == null || thirdIndexes.isEmpty()) {
+                // no such triplex
+                continue;
             }
 
-            if (cnt > 0) {
-                sum += cnt;
+            for (Integer firstIndex : firstIndexes) {
+                for (Integer secondIndex : secondIndexes) {
+                    if (secondIndex <= firstIndex) {
+                        // second can't be before first
+                        break;
+                    }
+
+                    Integer breakIndex = null;
+                    for (int i = 0; i < thirdIndexes.size(); i++) {
+                        Integer thirdIndex = thirdIndexes.get(i);
+                        if (thirdIndex <= secondIndex) {
+                            // third can't be before second
+                            breakIndex = i;
+                            break;
+                        }
+                    }
+
+                    sum += (breakIndex != null ? breakIndex : thirdIndexes.size());
+                }
             }
         }
 
         return sum;
+    }
+
+    private static class Triplet{
+        private final long first;
+        private final long second;
+        private final long third;
+
+        public Triplet(long first, long second, long third) {
+            this.first = first;
+            this.second = second;
+            this.third = third;
+        }
+
+        public long getFirst() {
+            return first;
+        }
+
+        public long getSecond() {
+            return second;
+        }
+
+        public long getThird() {
+            return third;
+        }
+
+        @Override
+        public boolean equals(Object o) {
+            if (this == o) return true;
+            if (o == null || getClass() != o.getClass()) return false;
+            Triplet triplet = (Triplet) o;
+            return first == triplet.first &&
+                    second == triplet.second &&
+                    third == triplet.third;
+        }
+
+        @Override
+        public int hashCode() {
+            return Objects.hash(first, second, third);
+        }
     }
 
     // It works via recursion and provides correct answers but
