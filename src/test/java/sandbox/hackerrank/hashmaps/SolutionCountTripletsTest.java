@@ -2,6 +2,7 @@ package sandbox.hackerrank.hashmaps;
 
 import org.junit.Test;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
@@ -37,7 +38,18 @@ public class SolutionCountTripletsTest {
                 ), 1)
         );
 
+        assertEquals(
+                166661666700000L,
+                solution.calculate(build(100_000, 1237), 1)
+        );
+    }
 
+    private List<Long> build(int size, long v) {
+        List<Long> result = new ArrayList<>();
+        for (int i = 0; i < size; i++) {
+            result.add(v);
+        }
+        return result;
     }
 
 }
