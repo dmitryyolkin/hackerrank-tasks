@@ -14,10 +14,10 @@ public class SolutionCountTriplets {
     public long calculate(List<Long> arr, long r) {
         // Details are explained here https://www.thepoorcoder.com/hackerrank-count-triplets-solution/
         // fill two maps (values from right of the value, values from left of the value)
-        Map<Long, Long> value2LeftCount = new HashMap<>();
-        Map<Long, Long> value2RightCount = new HashMap<>();
+        Map<Long, Integer> value2LeftCount = new HashMap<>();
+        Map<Long, Integer> value2RightCount = new HashMap<>();
         for (Long v : arr) {
-            Long cnt = value2RightCount.computeIfAbsent(v, value -> 0L);
+            Integer cnt = value2RightCount.computeIfAbsent(v, value -> 0);
             value2RightCount.put(v, ++cnt);
         }
 
@@ -28,19 +28,20 @@ public class SolutionCountTriplets {
             long right = middle * r;
 
             // remove middle value from right map
-            Long prevMiddleCount = value2RightCount.get(middle);
+            Integer prevMiddleCount = value2RightCount.get(middle);
             value2RightCount.put(middle, --prevMiddleCount);
 
             if (middle % r == 0) {
-                Long prevLeftCnt = Optional.ofNullable(value2LeftCount.get(left)).orElse(0L);
-                Long prevRightCnt = Optional.ofNullable(value2RightCount.get(right)).orElse(0L);
+                // cast to long to exclude int overflow when prevLeftCnt * prevRightCnt
+                long prevLeftCnt = (long) Optional.ofNullable(value2LeftCount.get(left)).orElse(0);
+                long prevRightCnt = (long) Optional.ofNullable(value2RightCount.get(right)).orElse(0);
                 if (prevLeftCnt != 0 && prevRightCnt != 0) {
                     sum += (prevLeftCnt * prevRightCnt);
                 }
             }
 
             // shift middle value left map
-            Long cnt = value2LeftCount.computeIfAbsent(middle, v -> 0L);
+            Integer cnt = value2LeftCount.computeIfAbsent(middle, v -> 0);
             value2LeftCount.put(middle, ++cnt);
         }
         return sum;
