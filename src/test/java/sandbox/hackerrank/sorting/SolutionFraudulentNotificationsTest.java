@@ -1,7 +1,6 @@
 package sandbox.hackerrank.sorting;
 
 import org.junit.Test;
-import sandbox.SolutionTemplate;
 
 import static org.junit.Assert.assertEquals;
 
@@ -9,10 +8,10 @@ public class SolutionFraudulentNotificationsTest {
     @Test
     public void testSolution() {
         SolutionFraudulentNotifications solution = new SolutionFraudulentNotifications();
-//        assertEquals(
-//                1,
-//                solution.calculate(new int[]{10, 20, 30, 40, 50}, 3)
-//        );
+        assertEquals(
+                1,
+                solution.calculate(new int[]{10, 20, 30, 40, 50}, 3)
+        );
 
         assertEquals(
                 2,
