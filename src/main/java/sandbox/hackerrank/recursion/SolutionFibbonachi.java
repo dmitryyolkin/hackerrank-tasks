@@ -1,4 +1,4 @@
-package sandbox.hackerrank;
+package sandbox.hackerrank.recursion;
 
 public class SolutionFibbonachi {
 

@@ -1,6 +1,7 @@
-package sandbox.hackerrank;
+package sandbox.hackerrank.recursion;
 
 import org.junit.Test;
+import sandbox.hackerrank.recursion.SolutionFibbonachi;
 
 import static org.junit.Assert.assertEquals;
 
