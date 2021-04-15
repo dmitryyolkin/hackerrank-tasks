@@ -11,6 +11,36 @@ public class SolutionCrosswordPuzzleTest {
 
         assertArrayEquals(
                 new String[]{
+                        "+M++++++++",
+                        "+ANDAMAN++",
+                        "+N++L+++++",
+                        "+ICELAND++",
+                        "+P++E++++P",
+                        "+U++P++++U",
+                        "+R++YANGON",
+                        "+++++++++E",
+                        "++++++++++",
+                        "++++++++++"
+                },
+                solution.calculate(
+                        new String[]{
+                                "+-++++++++",
+                                "+-------++",
+                                "+-++-+++++",
+                                "+-------++",
+                                "+-++-++++-",
+                                "+-++-++++-",
+                                "+-++------",
+                                "+++++++++-",
+                                "++++++++++",
+                                "++++++++++"
+                        },
+                        "ANDAMAN;MANIPUR;ICELAND;ALLEPY;YANGON;PUNE"
+                )
+        );
+
+        assertArrayEquals(
+                new String[]{
                         "+C++++++++",
                         "+A++T+++++",
                         "+NIGERIA++",

@@ -254,17 +254,22 @@ public class SolutionCrosswordPuzzle {
     private Map<Slot, Map<Integer, Integer>> collectIntersectedSlots(Map<Integer, List<Slot>> candidates,
                                                                      Integer originalIndex,
                                                                      int originalStartIndex, int originalEndIndex) {
-        return candidates
+        List<Slot> filteredSlots = candidates
                 .values()
                 .stream()
                 .flatMap(Collection::stream)
-                .filter(slot -> {
-                    if (originalStartIndex <= slot.slotIndex && slot.slotIndex >= originalEndIndex) {
+                .filter(candidateSlot -> {
+                    if (originalStartIndex > candidateSlot.slotIndex || candidateSlot.slotIndex > originalEndIndex) {
+                        // out of bounds
                         return false;
                     }
 
-                    return (slot.startIndex <= originalIndex && originalIndex <= slot.endIndex);
+                    return (candidateSlot.startIndex <= originalIndex && originalIndex <= candidateSlot.endIndex);
                 })
+                .collect(Collectors.toList());
+
+        return filteredSlots
+                .stream()
                 .collect(Collectors.toMap(
                         s -> s,
                         s -> {
