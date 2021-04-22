@@ -1,7 +1,7 @@
-package sandbox.toptal;
+package sandbox.toptal.sandbox;
 
 import org.junit.Test;
-import sandbox.toptal.SolutionCompileString;
+import sandbox.toptal.sandbox.SolutionCompileString;
 
 import static org.junit.Assert.assertEquals;
 

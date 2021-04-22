@@ -1,4 +1,4 @@
-package sandbox.toptal;
+package sandbox.toptal.sandbox;
 
 import java.util.ArrayList;
 import java.util.List;
