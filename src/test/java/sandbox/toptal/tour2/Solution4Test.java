@@ -1,8 +1,8 @@
-package sandbox.toptal;
+package sandbox.toptal.tour2;
 
 import org.junit.Assert;
 import org.junit.Test;
-import sandbox.toptal.Solution4;
+import sandbox.toptal.tour2.Solution4;
 
 public class Solution4Test {
     @Test

@@ -1,4 +1,4 @@
-package sandbox.toptal;// you can also use imports, for example:
+package sandbox.toptal.tour2;// you can also use imports, for example:
 // import java.util.*;
 
 // you can write to stdout for debugging purposes, e.g.
