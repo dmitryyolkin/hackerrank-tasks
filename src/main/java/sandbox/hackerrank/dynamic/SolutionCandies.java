@@ -11,12 +11,12 @@ public class SolutionCandies {
         for (int i = 0; i < arr.length - 1; i++) {
             int currV = arr[i];
             int nextV = arr[i + 1];
-            if (currV < nextV) {
+            if (currV <= nextV) {
                 if (i > 0) {
                     if (currV > prevV) {
                         prevCandies++;
-                    } else if (currV < prevV) {
-                        prevCandies--;
+                    } else if (currV <= prevV) {
+                        prevCandies = 1;
                     }
                 }
             } else {
@@ -27,8 +27,9 @@ public class SolutionCandies {
                     // predict how many candies should be bought
                     long buffer = prevCandies - 1;
                     int prevCandidateV = nextV;
-                    for (int j = i + 2; j < Math.min(arr.length, i + currV); j++) {
-                        int nextCandidateV = arr[j];
+                    int j = i + 2;
+                    while (j < arr.length) {
+                        int nextCandidateV = arr[j++];
                         if (prevCandidateV > nextCandidateV) {
                             buffer--;
                             if (buffer < 1) {
@@ -46,8 +47,9 @@ public class SolutionCandies {
 
                     // predict how many candies should be bought
                     int prevCandidateV = nextV;
-                    for (int j = i + 2; j < Math.min(arr.length, i + currV); j++) {
-                        int nextCandidateV = arr[j];
+                    int j = i + 2;
+                    while (j < arr.length) {
+                        int nextCandidateV = arr[j++];
                         if (prevCandidateV > nextCandidateV) {
                             prevCandies++;
                         } else if (prevCandidateV < nextCandidateV) {
@@ -55,7 +57,6 @@ public class SolutionCandies {
                         }
                         prevCandidateV = nextCandidateV;
                     }
-
                 }
 
             }

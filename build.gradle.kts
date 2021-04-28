@@ -15,4 +15,5 @@ repositories {
 
 dependencies {
     testImplementation("junit", "junit", "4.12")
+    testImplementation("com.google.guava", "guava", "30.0-jre")
 }
