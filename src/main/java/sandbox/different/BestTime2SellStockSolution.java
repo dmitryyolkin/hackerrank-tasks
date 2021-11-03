@@ -2,7 +2,7 @@ package sandbox.different;
 
 import java.util.Objects;
 
-public class BestSellSolution {
+public class BestTime2SellStockSolution {
 
     // Search array indexes when it's the most profitable to buy and sell a stock (difference is max)
     // Complexity: O(n)
