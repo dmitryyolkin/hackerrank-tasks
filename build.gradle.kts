@@ -16,4 +16,5 @@ repositories {
 dependencies {
     testImplementation("junit", "junit", "4.12")
     testImplementation("com.google.guava", "guava", "30.0-jre")
+    testImplementation("com.tngtech.java", "junit-dataprovider", "1.13.1")
 }
